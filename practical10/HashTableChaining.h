@@ -125,9 +125,17 @@ bool HashTable<T>::remove(std::string key) {
 //                returns true, otherwise function returns false
 template <class T>
 bool HashTable<T>::find(std::string key, T & val) const {
+    const LinkedList<HashEntry> & list = table[hash(key)];
+	//hash the key and find the list
+	int i = list.find(HashEntry(key));
 
-    // implement this function.Hint the remove function above is a good guide
-    return false;
+	if (i != -1) {
+		val = list.get(i).element;
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 
